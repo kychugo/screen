@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screen Share</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Screen Share home"><span class="brand-mark">S</span><span>Screen Share</span></a>
+      <span class="status-pill"><span class="status-dot"></span><span id="connectionStatus">Ready</span></span>
+    </header>
+
+    <section class="intro" id="introView">
+      <p class="eyebrow">PRIVATE PEER-TO-PEER VIEWING</p>
+      <h1>Your screen,<br><em>wherever you need it.</em></h1>
+      <p class="lede">Share a window or your full desktop directly with another device. No account, upload, or cloud storage required.</p>
+      <div class="mode-grid">
+        <button class="mode-card" data-mode="host"><span class="mode-number">01</span><span class="mode-title">Share this screen</span><span class="mode-copy">Start a room and present from this computer.</span><span class="arrow">&#8599;</span></button>
+        <button class="mode-card" data-mode="viewer"><span class="mode-number">02</span><span class="mode-title">Watch a screen</span><span class="mode-copy">Join an existing room from this device.</span><span class="arrow">&#8599;</span></button>
+      </div>
+    </section>
+
+    <section class="room-view hidden" id="roomView">
+      <div class="room-heading"><div><p class="eyebrow" id="modeLabel">SCREEN HOST</p><h2 id="roomTitle">Your room is ready.</h2></div><button class="text-button" id="leaveButton">Leave room</button></div>
+      <div class="room-layout">
+        <aside class="room-panel" id="hostPanel">
+          <p class="panel-label">ROOM CODE</p><div class="room-code" id="roomCode">------</div>
+          <button class="primary-button" id="copyButton">Copy room code</button>
+          <button class="secondary-button" id="shareButton">Start sharing</button>
+          <div class="qr-wrap"><img id="qrCode" alt="QR code for this room"><p class="qr-help">Scan to open this room on another device.</p></div>
+          <div class="viewer-access"><p class="panel-label">VIEWER ACCESS</p><div id="viewerList" class="viewer-list"><span class="helper">No viewers yet.</span></div></div>
+          <p class="helper" id="hostHelper">Choose a window, tab, or your entire screen. The viewer will connect automatically.</p>
+        </aside>
+        <aside class="room-panel hidden" id="viewerPanel">
+          <label class="panel-label" for="nameInput">YOUR NAME</label>
+          <input id="nameInput" class="room-input" maxlength="32" autocomplete="name" placeholder="Alex">
+          <label class="panel-label" for="roomInput">ROOM CODE</label>
+          <input id="roomInput" class="room-input" maxlength="8" autocomplete="off" placeholder="AB12CD">
+          <button class="primary-button" id="joinButton">Join room</button>
+          <button class="secondary-button hidden" id="controlButton">Request control</button>
+          <p class="helper">Ask the presenter for the six-character room code.</p>
+        </aside>
+        <div class="screen-stage" id="screenStage"><div class="stage-empty"><span class="stage-icon">◌</span><strong id="stageTitle">Waiting for a connection</strong><span id="stageCopy">Your shared screen will appear here.</span></div><video id="screenVideo" autoplay playsinline></video></div>
+      </div>
+      <p class="privacy-note">Your screen is sent directly between the two browsers using WebRTC. This server only helps them find each other.</p>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
